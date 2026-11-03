@@ -1,0 +1,26 @@
+id,temperature_c,vibration_g,current_a,label
+1,38,0.12,1.5,Normal operation
+2,42,0.18,1.8,Normal operation
+3,48,0.20,2.1,Normal operation
+4,52,0.15,2.4,Normal operation
+5,45,0.25,1.9,Normal operation
+6,88,0.20,2.5,Overheating
+7,94,0.25,3.0,Overheating
+8,102,0.18,3.2,Overheating
+9,86,0.30,2.7,Overheating
+10,98,0.28,3.1,Overheating
+11,48,0.80,2.5,Excessive vibration
+12,52,0.92,2.7,Excessive vibration
+13,44,1.10,3.0,Excessive vibration
+14,58,0.85,3.2,Excessive vibration
+15,46,0.78,2.2,Excessive vibration
+16,48,0.25,7.2,Electrical overload
+17,55,0.32,8.0,Electrical overload
+18,62,0.28,9.0,Electrical overload
+19,50,0.40,7.8,Electrical overload
+20,58,0.35,8.5,Electrical overload
+21,100,1.00,8.5,Combined fault
+22,108,1.20,9.2,Combined fault
+23,96,0.95,8.0,Combined fault
+24,112,1.10,9.5,Combined fault
+25,104,0.85,8.8,Combined fault

@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>EdgeGuard AI — Complete Edge AI Lab</title>
+<style>
+:root{--bg:#121212;--panel:#181818;--panel2:#1c1c1c;--line:#2c2c2c;--text:#e8e8e6;--muted:#8e8e8a;--cyan:#d6d6d2;--green:#7fa886;--amber:#c2a065;--red:#c4766b;--violet:#a8a8a4}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:14px/1.5 Inter,system-ui,-apple-system,Segoe UI,sans-serif}button,input,select{font:inherit}button{cursor:pointer}.wrap{max-width:1280px;margin:auto;padding:24px 18px 50px}.top{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:20px}.brand{display:flex;gap:12px;align-items:center}.logo{width:44px;height:44px;display:grid;place-items:center;border:1px solid var(--line);background:var(--panel2);border-radius:10px;color:var(--text);font-size:14px;font-weight:800;letter-spacing:.5px}.eyebrow{text-transform:uppercase;letter-spacing:1.5px;font-size:10px;font-weight:700;color:var(--muted)}h1{font-size:clamp(25px,4vw,36px);line-height:1.12;letter-spacing:-1px;margin:3px 0}.sub,.muted{color:var(--muted)}.sub{font-size:12px}.pill,.tag{border:1px solid var(--line);border-radius:99px;padding:6px 10px;font-size:11px;color:var(--muted);white-space:nowrap}.pill{color:var(--muted);border-color:var(--line);background:transparent;font-weight:700}.tabs{display:flex;gap:7px;overflow:auto;padding:5px 0 14px;margin-bottom:4px}.tab{border:1px solid var(--line);background:#181818;color:var(--muted);padding:9px 13px;border-radius:9px;white-space:nowrap;font-weight:700;font-size:12px}.tab.active{color:var(--cyan);border-color:#4a4a4a;background:#262626}.page{display:none}.page.active{display:block}.panel{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px;min-width:0}.panel h2{font-size:16px;margin:0 0 4px}.panel h3{font-size:13px;margin:0 0 8px}.head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:13px}.grid2{display:grid;grid-template-columns:1.05fr .95fr;gap:14px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:13px 0}.metric{background:#1c1c1c;border:1px solid var(--line);border-radius:12px;padding:13px;min-width:0}.label{font-size:11px;color:var(--muted)}.value{font-size:25px;font-weight:850;letter-spacing:-.7px;margin:4px 0}.unit{font-size:11px;color:var(--muted);font-weight:500;letter-spacing:0}.bar{height:5px;background:#2c2c2c;border-radius:99px;overflow:hidden;margin-top:8px}.bar div{height:100%;background:var(--cyan);border-radius:99px;transition:width .2s}.device{display:flex;align-items:center;gap:16px;padding:8px 0}.board{width:110px;min-width:110px;height:105px;border:2px solid #3a3a3a;background:#1e1e1e;border-radius:13px;display:grid;place-items:center;text-align:center;position:relative;color:#cfcfcb;font-weight:900;font-size:21px}.board:after{content:"";position:absolute;inset:9px;border:1px dashed #ffffff22;border-radius:6px}.board small{display:block;font-size:9px;letter-spacing:2px}.specs{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}.spec{font-size:10px;border:1px solid var(--line);border-radius:6px;padding:4px 7px;color:#c8c8c4}.local{margin-top:12px;padding-top:11px;border-top:1px solid var(--line);color:var(--muted);font-size:11px}.dot{display:inline-block;width:7px;height:7px;background:currentColor;border-radius:50%;margin-right:5px}.scenarios{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin:13px 0}.scenario{border:1px solid var(--line);background:#1c1c1c;color:var(--text);padding:10px;border-radius:9px;text-align:left}.scenario.active{border-color:var(--cyan);background:#262626}.scenario b{display:block;font-size:12px}.scenario small{font-size:10px;color:var(--muted)}.sliders{display:grid;gap:13px;margin-top:12px}.sliderrow{display:grid;grid-template-columns:1fr auto;gap:7px}.sliderrow label{font-size:12px}.sliderrow output{color:var(--cyan);font-size:12px;font-weight:800}input[type=range]{grid-column:1/-1;width:100%;accent-color:var(--cyan)}.btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:15px}.btn{border:1px solid #3a3a3a;border-radius:8px;padding:9px 12px;background:#222222;color:var(--text);font-size:12px;font-weight:800}.btn.primary{background:#e8e8e6;border-color:#e8e8e6;color:#121212}.btn:disabled{opacity:.4;cursor:not-allowed}.status{display:flex;gap:12px;align-items:center;padding:13px;border:1px solid var(--line);border-radius:11px;background:#1c1c1c}.status-icon{width:39px;height:39px;display:grid;place-items:center;border-radius:10px;background:#1f2a21;color:var(--green);font-size:20px}.status.warning .status-icon{background:#2e2a22;color:var(--amber)}.status.danger .status-icon{background:#2f2322;color:var(--red)}.status strong{display:block;font-size:15px}.status small{color:var(--muted)}.confidence{margin:14px 0}.confline{display:flex;justify-content:space-between;color:var(--muted);font-size:11px}.confbar{height:7px;background:#2c2c2c;border-radius:99px;overflow:hidden;margin-top:6px}.confbar div{height:100%;width:0;background:var(--green);transition:width .2s}.chart{width:100%;height:190px;display:block}.legend{display:flex;flex-wrap:wrap;gap:10px;font-size:10px;color:var(--muted)}.legend i{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:4px}.log{max-height:250px;overflow:auto}.logrow{display:grid;grid-template-columns:62px 1fr auto;gap:8px;padding:9px 0;border-bottom:1px solid #262626;font-size:11px}.logrow time{color:var(--muted)}.ok{color:var(--green)}.warn{color:var(--amber)}.bad{color:var(--red)}.tablewrap{overflow:auto}table{border-collapse:collapse;width:100%;font-size:12px}th,td{padding:10px 9px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap}th{color:var(--muted);font-weight:700}td{color:#dcdcd9}.bigstat{font-size:30px;font-weight:850;letter-spacing:-1px}.explain{color:var(--muted);font-size:12px;line-height:1.75}.callout{border-left:2px solid #555;background:#1c1c1c;padding:12px 14px;border-radius:0 9px 9px 0;font-size:12px;color:#c8c8c4}.flow{display:flex;align-items:stretch;gap:8px;flex-wrap:wrap}.flowstep{flex:1;min-width:120px;border:1px solid var(--line);border-radius:10px;background:#1c1c1c;padding:12px;text-align:center}.flowstep b{display:block;font-size:12px}.flowstep small{color:var(--muted);font-size:10px}.arrow{align-self:center;color:var(--muted);font-weight:900}.metriclabel{font-size:10px;color:var(--muted)}.matrix{display:grid;grid-template-columns:repeat(2,1fr);gap:7px}.matrix div{padding:12px;background:#1c1c1c;border:1px solid var(--line);border-radius:9px}.matrix strong{font-size:22px;display:block}.matrix small{color:var(--muted)}.footer{text-align:center;color:#6a6a66;font-size:10px;margin-top:20px}
+@media(max-width:850px){.grid2{grid-template-columns:1fr}.metrics{grid-template-columns:repeat(2,1fr)}.grid3{grid-template-columns:1fr 1fr}.pill{display:none}}@media(max-width:500px){.wrap{padding:15px 10px}.panel{padding:13px}.scenarios{grid-template-columns:repeat(2,1fr)}.grid3{grid-template-columns:1fr}.board{width:82px;min-width:82px;height:88px}.value{font-size:22px}.logrow{grid-template-columns:52px 1fr}.logrow .kind{display:none}}
+.termgrid{display:grid;grid-template-columns:1.55fr 1fr;gap:14px}
+.term{background:#0d0d0d;border:1px solid #2c2c2c;border-radius:12px;overflow:hidden;font-family:"JetBrains Mono","Fira Code",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12.5px;display:flex;flex-direction:column;min-width:0}
+.termbar{display:flex;align-items:center;gap:7px;padding:9px 12px;background:#1a1a1a;border-bottom:1px solid #262626;font-size:11px;color:#8e8e8a}
+.termbar i{width:10px;height:10px;border-radius:50%;display:inline-block;background:#333}.termbar .ttl{flex:1;text-align:center;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.conn{font-size:10px;padding:2px 8px;border-radius:99px;border:1px solid #3a3a3a;color:#c4766b;white-space:nowrap}.conn.on{border-color:#3a3a3a;color:#7fa886;background:#1e1e1e}
+.termbody{flex:1 1 0;min-height:420px;overflow:auto;padding:12px 14px;white-space:pre-wrap;word-break:break-word;color:#d9d9d6;line-height:1.55}
+.termbody div{min-height:1.55em}
+.t-p{color:#7fa886;font-weight:700}.t-h{color:#d6d6d2;font-weight:700}.t-d{color:#6e6e6a}.t-ok{color:#7fa886}.t-w{color:#c2a065}.t-r{color:#c4766b}.t-c{color:#d6d6d2}.t-v{color:#a8a8a4}.t-b{font-weight:800}
+.caret{display:inline-block;width:7px;height:14px;background:#7fa886;vertical-align:-2px;animation:blink 1s steps(1) infinite}@keyframes blink{50%{opacity:0}}
+.termin{display:flex;align-items:center;gap:6px;padding:8px 14px;border-top:1px solid #262626;background:#0f0f0f}.termin input{flex:1;min-width:0;background:transparent;border:0;outline:0;color:#d9d9d6;font-family:inherit;font-size:12.5px}
+.cmdgroup{margin-bottom:12px}.cmdgroup .eyebrow{margin-bottom:6px;color:var(--muted)}
+.cmds{display:grid;gap:6px}.cmd{display:block;width:100%;text-align:left;border:1px solid var(--line);background:#1c1c1c;color:#d9d9d6;padding:8px 10px;border-radius:8px;font-family:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;font-size:11.5px;transition:border-color .15s,background .15s}
+.cmd:hover:not(:disabled){border-color:#4a4a4a;background:#262626}.cmd:disabled{opacity:.45;cursor:wait}.cmd small{display:block;font-family:Inter,system-ui,sans-serif;color:var(--muted);font-size:10px;margin-top:2px}
+.cmd.hero{background:#e8e8e6;border-color:#e8e8e6;color:#121212}.cmd.hero small{color:#555}.cmd.hero:hover:not(:disabled){background:#fff;border-color:#fff}.chips{display:flex;flex-wrap:wrap;gap:5px}.chip{border:1px solid var(--line);background:#1c1c1c;color:#d9d9d6;border-radius:99px;padding:5px 10px;font-size:11px;font-weight:700}.chip:hover:not(:disabled){border-color:var(--cyan)}.chip:disabled{opacity:.45;cursor:wait}
+@media(max-width:850px){.termgrid{grid-template-columns:1fr}.termbody{flex:none;height:380px;min-height:0;white-space:pre}#console .head{flex-wrap:wrap}}
+@media(max-width:500px){.term,.termin input{font-size:11px}.termbody{padding:10px}}
+</style>
+</head>
+<body><div class="wrap">
+<header class="top"><div class="brand"><div class="logo">EG</div><div><div class="eyebrow">Embedded Intelligence · Lab Simulation</div><h1>EdgeGuard AI</h1><div class="sub">Predictive maintenance with local inference · Complete academic demo</div></div></div><div class="pill">Browser-local demo</div></header>
+<nav class="tabs"><button class="tab active" data-page="lab">Live Simulator</button><button class="tab" data-page="experiment">ML Experiment</button><button class="tab" data-page="evaluation">Evaluation</button><button class="tab" data-page="report">Assignment Report</button></nav>
+
+<section class="page active" id="lab">
+<div class="grid2">
+<div class="panel"><div class="head"><h2>Virtual edge device</h2><span class="tag">SIMULATED HARDWARE</span></div><div class="device"><div class="board">EDGE<small>NODE</small></div><div><div class="eyebrow">Raspberry Pi / Arduino concept</div><h2 style="font-size:20px;margin:4px 0">Industrial motor monitor</h2><div class="sub">Sensor acquisition → feature vector → local model → alarm output</div><div class="specs"><span class="spec">Temperature</span><span class="spec">Vibration RMS</span><span class="spec">Current</span></div></div></div><div class="local"><span class="dot"></span> No cloud API · predictions run in this browser · works offline after opening</div></div>
+<div class="panel"><div class="head"><h2>Device runtime</h2><span class="tag">SIMULATED</span></div><div class="grid3"><div class="metric"><div class="label">Inference</div><div class="value" id="latency">—<span class="unit"> ms</span></div><div class="sub">Per frame</div></div><div class="metric"><div class="label">Cloud calls</div><div class="value ok">0</div><div class="sub">None required</div></div><div class="metric"><div class="label">Samples tested</div><div class="value" id="runCount">0</div><div class="sub">This session</div></div></div><p class="explain">Latency is measured with <code>performance.now()</code> around the classify() call, per inference frame.</p></div>
+</div>
+<div class="panel" style="margin-top:14px" id="console"><div class="head"><div><h2>Raspberry Pi device console</h2><div class="sub">SSH session to the edge node · click a command, or type it below</div></div><span class="tag">edgeguard-pi · VIRTUAL RASPBERRY PI 4</span></div>
+<div class="termgrid">
+<div class="term"><div class="termbar"><i></i><i></i><i></i><span class="ttl" id="termTitle">presenter@lab-pc: ~</span><span class="conn" id="connBadge">● OFFLINE</span></div>
+<div class="termbody" id="termBody"></div>
+<div class="termin"><span id="termPrompt" class="t-p">$</span><input id="termInput" autocomplete="off" spellcheck="false" placeholder="type a command, or 'help'"></div></div>
+<div>
+<div class="cmdgroup"><button class="cmd hero" data-run="demo">Run full demo<small>Connect → load model → test faults → final verdict</small></button></div>
+<div class="cmdgroup"><div class="eyebrow">1 · Device</div><div class="cmds">
+<button class="cmd" data-run="ssh pi@edgeguard-pi.local">$ ssh pi@edgeguard-pi.local<small>Connect to the edge node</small></button>
+<button class="cmd" data-run="neofetch --off">$ neofetch --off<small>Board, CPU, memory and OS</small></button>
+<button class="cmd" data-run="vcgencmd measure_temp">$ vcgencmd measure_temp<small>SoC temperature &amp; throttling</small></button>
+<button class="cmd" data-run="systemctl status edgeguard">$ systemctl status edgeguard<small>Inference service health</small></button></div></div>
+<div class="cmdgroup"><div class="eyebrow">2 · Sensors</div><div class="cmds"><button class="cmd" data-run="python3 sensors.py --read">$ python3 sensors.py --read<small>Read DS18B20 · ADXL345 · ACS712</small></button></div>
+<div class="chips" style="margin-top:7px"><button class="chip" data-run="python3 sensors.py --inject normal">normal</button><button class="chip" data-run="python3 sensors.py --inject heat">heat</button><button class="chip" data-run="python3 sensors.py --inject vibration">vibration</button><button class="chip" data-run="python3 sensors.py --inject current">current</button><button class="chip" data-run="python3 sensors.py --inject combined">combined</button></div></div>
+<div class="cmdgroup"><div class="eyebrow">3 · Model</div><div class="cmds">
+<button class="cmd" data-run="python3 edgeguard.py --load-model">$ python3 edgeguard.py --load-model<small>Load classifier into memory</small></button>
+<button class="cmd" data-run="python3 edgeguard.py --infer">$ python3 edgeguard.py --infer<small>Classify live readings · print verdict</small></button>
+<button class="cmd" data-run="python3 edgeguard.py --test-all">$ python3 edgeguard.py --test-all<small>Run all 5 fault scenarios</small></button>
+<button class="cmd" data-run="python3 evaluate.py">$ python3 evaluate.py<small>25-sample evaluation · accuracy verdict</small></button></div></div>
+<div class="chips"><button class="chip" data-run="clear">clear</button><button class="chip" data-run="exit">exit</button><button class="chip" data-run="help">help</button></div>
+</div></div></div>
+<div class="metrics">
+<div class="metric"><div class="label">Temperature</div><div class="value" id="tempVal">42.0<span class="unit"> °C</span></div><div class="bar"><div id="tempBar"></div></div></div>
+<div class="metric"><div class="label">Vibration RMS</div><div class="value" id="vibVal">0.18<span class="unit"> g</span></div><div class="bar"><div id="vibBar"></div></div></div>
+<div class="metric"><div class="label">Motor current</div><div class="value" id="currVal">1.8<span class="unit"> A</span></div><div class="bar"><div id="currBar"></div></div></div>
+<div class="metric"><div class="label">Safety interlock</div><div class="value ok" id="interlock">ARMED</div><div class="sub">Critical temperature cutoff</div></div>
+</div>
+<div class="grid2">
+<div class="panel"><div class="head"><h2>1 · Set the sensor scenario</h2><span class="tag">INPUT</span></div><div class="sub">Select a preset, or tune the sensor readings manually.</div>
+<div class="scenarios"><button class="scenario active" data-case="normal"><b>Normal operation</b><small>Stable motor readings</small></button><button class="scenario" data-case="heat"><b>Overheating</b><small>Thermal fault</small></button><button class="scenario" data-case="vibration"><b>Excess vibration</b><small>Mechanical fault</small></button><button class="scenario" data-case="current"><b>High current</b><small>Electrical overload</small></button><button class="scenario" data-case="combined"><b>Combined fault</b><small>Multiple abnormal signals</small></button><button class="scenario" data-case="custom"><b>Custom test</b><small>Manual readings</small></button></div>
+<div class="sliders"><div class="sliderrow"><label for="temp">Temperature</label><output id="tempOut">42 °C</output><input id="temp" type="range" min="20" max="120" value="42"></div><div class="sliderrow"><label for="vib">Vibration RMS</label><output id="vibOut">0.18 g</output><input id="vib" type="range" min="0" max="100" value="12"></div><div class="sliderrow"><label for="curr">Motor current</label><output id="currOut">1.8 A</output><input id="curr" type="range" min="0" max="100" value="18"></div></div>
+<div class="btns"><button class="btn primary" id="infer">Run inference</button><button class="btn" id="auto">Run all test cases</button><button class="btn" id="reset">Reset session</button></div></div>
+<div class="panel"><div class="head"><h2>2 · On-device prediction</h2><span class="tag">LOCAL CLASSIFIER</span></div><div class="status" id="status"><div class="status-icon" id="statusIcon">✓</div><div><strong id="statusTitle">Normal operation</strong><small id="statusText">The sensor pattern resembles normal operation.</small></div></div><div class="confidence"><div class="confline"><span>Prototype similarity score</span><strong id="confidenceText">—</strong></div><div class="confbar"><div id="confidenceBar"></div></div></div><div class="grid3"><div class="metric"><div class="label">Motor output</div><div class="value" style="font-size:18px" id="motorState">RUNNING</div></div><div class="metric"><div class="label">Alarm output</div><div class="value" style="font-size:18px" id="alarmState">OFF</div></div><div class="metric"><div class="label">Rule baseline</div><div class="value" style="font-size:18px" id="ruleState">NORMAL</div></div></div><div class="head" style="margin-top:18px"><h2>Sensor history</h2><span class="tag">LATEST 30 READINGS</span></div><canvas id="chart" class="chart" width="700" height="210"></canvas><div class="legend"><span><i style="background:#c4766b"></i>Temperature / 120</span><span><i style="background:#d6d6d2"></i>Vibration / 1.5</span><span><i style="background:#c2a065"></i>Current / 10</span></div></div>
+</div>
+<div class="panel" style="margin-top:14px"><div class="head"><h2>Experiment event log</h2><span class="tag" id="logCount">0 EVENTS</span></div><div class="log" id="log"><div class="muted">Run inference or execute all test cases to record observations.</div></div></div>
+</section>
+
+<section class="page" id="experiment">
+<div class="panel"><div class="head"><h2>Experiment 01 · Local fault classification</h2><span class="tag">REPRODUCIBLE</span></div><p class="explain">The edge node runs a nearest-prototype classifier. Each sensor frame is normalized into a 3-D feature vector, its Euclidean distance to five class prototype vectors is computed, and the nearest class is emitted. The model has 15 parameters (0.6 KB), runs in O(k·d) per frame and needs no accelerator or network access.</p>
+<div class="flow"><div class="flowstep"><b>1. Sensor bus</b><small>Temperature · vibration · current</small></div><div class="arrow">→</div><div class="flowstep"><b>2. Normalize</b><small>Scale inputs to comparable ranges</small></div><div class="arrow">→</div><div class="flowstep"><b>3. Classifier</b><small>Distance to class prototypes</small></div><div class="arrow">→</div><div class="flowstep"><b>4. Safety logic</b><small>Threshold interlock + alarm</small></div></div>
+<div class="grid2" style="margin-top:16px"><div><h3>Feature vector</h3><div class="callout">x = [temperature / 120, vibration / 1.5, current / 10]</div><p class="explain">Normalization maps sensor channels to similar numeric ranges. This prevents a large-number channel from dominating distance purely because of its units.</p><h3>Distance function</h3><div class="callout">d(x, c) = √ Σ (xᵢ − cᵢ)²</div><p class="explain">The class prototype with the smallest Euclidean distance is selected. The displayed score maps distance to a 50–99 similarity scale: s = 100 · (1 − d / 1.25).</p></div><div><h3>Prototype table</h3><div class="tablewrap"><table><thead><tr><th>Class</th><th>Temp / 120</th><th>Vib / 1.5</th><th>Current / 10</th></tr></thead><tbody><tr><td>Normal</td><td>0.35</td><td>0.12</td><td>0.20</td></tr><tr><td>Overheating</td><td>0.80</td><td>0.20</td><td>0.32</td></tr><tr><td>Excess vibration</td><td>0.42</td><td>0.78</td><td>0.32</td></tr><tr><td>Electrical overload</td><td>0.45</td><td>0.32</td><td>0.83</td></tr><tr><td>Combined fault</td><td>0.88</td><td>0.85</td><td>0.88</td></tr></tbody></table></div></div></div>
+<div class="callout" style="margin-top:14px"><b>Safety separation:</b> the model predicts a class; an independent emergency interlock activates at 110 °C. The interlock path is evaluated before the model output and cannot be overridden by it.</div></div>
+<div class="grid2" style="margin-top:14px"><div class="panel"><h2>Test protocol</h2><ol class="explain"><li>Start with the normal-operation preset.</li><li>Run inference and record the predicted class and latency.</li><li>Repeat for overheating, excess vibration, high current and combined fault.</li><li>Run the threshold baseline on the same readings.</li><li>Compare predictions and discuss failure cases.</li><li>Use the evaluation tab to compute metrics from the deterministic test set.</li></ol></div><div class="panel"><h2>Expected observations</h2><ul class="explain"><li>Inference is available without network requests.</li><li>Different sensor patterns can produce different class predictions.</li><li>Threshold rules are easy to explain but can miss combinations or trigger on one noisy signal.</li><li>Prototype-based classification separates combined faults that single-channel thresholds mislabel.</li><li>Per-frame inference latency stays well under 1 ms.</li></ul></div></div>
+</section>
+
+<section class="page" id="evaluation">
+<div class="panel"><div class="head"><h2>Evaluation bench</h2><span class="tag">25-SAMPLE BENCHMARK</span></div><p class="explain">Runs the classifier and a threshold-only baseline over a fixed, labelled 25-sample benchmark (5 per class) and reports accuracy, per-class confusion matrices and mean latency.</p><div class="btns"><button class="btn primary" id="evaluate">Run evaluation on 25 samples</button><button class="btn" id="export">Export evaluation CSV</button></div><div class="metrics" style="margin-top:15px"><div class="metric"><div class="label">Prototype classifier accuracy</div><div class="value" id="mlAcc">—</div></div><div class="metric"><div class="label">Threshold baseline accuracy</div><div class="value" id="ruleAcc">—</div></div><div class="metric"><div class="label">Samples evaluated</div><div class="value" id="evalN">0</div></div><div class="metric"><div class="label">Mean inference latency</div><div class="value" id="evalLat">—</div></div></div><div class="grid2"><div class="panel"><h3>Prototype classifier confusion matrix</h3><div class="tablewrap" id="matrixML"><p class="muted">Run evaluation to populate results.</p></div></div><div class="panel"><h3>Threshold baseline confusion matrix</h3><div class="tablewrap" id="matrixRule"><p class="muted">Run evaluation to populate results.</p></div></div></div><div class="panel" style="margin-top:14px"><div class="head"><h2>Sample-level results</h2><span class="tag">GROUND TRUTH VS PREDICTION</span></div><div class="tablewrap" id="sampleTable"><p class="muted">Evaluation results will appear here.</p></div></div></div>
+</section>
+
+<section class="page" id="report">
+<div class="panel"><div class="eyebrow">Technical report</div><h2 style="font-size:24px;margin:5px 0 12px">EdgeGuard AI: Edge-Based Industrial Motor Fault Detection</h2><p class="explain"><b style="color:var(--text)">Abstract.</b> This project demonstrates an edge-computing architecture for industrial motor monitoring using temperature, vibration and current sensing on a Raspberry Pi 4 class node. A local nearest-prototype classifier predicts the motor operating state and an independent interlock enforces an emergency stop. The classifier is benchmarked against a threshold-rule baseline on a labelled 25-sample set. The system demonstrates local inference, multi-sensor fusion and fully offline operation.</p>
+<h3>1. Problem statement</h3><p class="explain">Industrial equipment can develop thermal, mechanical or electrical faults. A cloud-only monitoring architecture may depend on network availability and communication latency. Edge computing places processing closer to the data source so that predictions and responses can be made locally.</p>
+<h3>2. Objectives</h3><ul class="explain"><li>Model a Raspberry Pi 4 sensor node with DS18B20, ADXL345 and ACS712 inputs.</li><li>Classify machine states using multiple sensor features.</li><li>Demonstrate local inference and offline-capable behavior.</li><li>Compare a prototype classifier with threshold rules.</li><li>Measure per-frame inference latency.</li></ul>
+<h3>3. System architecture</h3><div class="flow"><div class="flowstep"><b>Sensor inputs</b><small>DS18B20 · ADXL345 · ACS712</small></div><div class="arrow">→</div><div class="flowstep"><b>Feature scaling</b><small>Normalized values</small></div><div class="arrow">→</div><div class="flowstep"><b>Local classifier</b><small>Prototype distance</small></div><div class="arrow">→</div><div class="flowstep"><b>Outputs</b><small>Alarm / motor state</small></div></div>
+<h3 style="margin-top:17px">4. Methodology</h3><p class="explain">The node acquires sensor values, normalizes the three features and computes Euclidean distances to five class prototypes. The nearest prototype provides the predicted class. A separate threshold baseline identifies faults using fixed limits. A critical-temperature interlock activates independently at 110 °C. A fixed labelled benchmark is used to calculate accuracy and confusion matrices for both methods.</p>
+<h3>5. Results</h3><p class="explain" id="reportResults">Run the evaluation tab to populate this section.</p>
+<h3>6. Edge AI advantages demonstrated</h3><ul class="explain"><li><b>Low communication dependence:</b> predictions do not require a server request.</li><li><b>Low latency:</b> sub-millisecond inference per frame.</li><li><b>Privacy:</b> sensor data never leaves the node.</li><li><b>Resilience:</b> local inference can continue when a network is unavailable.</li></ul>
+<h3>7. Design decisions</h3><p class="explain">A nearest-prototype model was chosen for its tiny footprint, deterministic behavior and direct interpretability: every prediction can be explained by its distance to each class. Safety is enforced by a hard interlock that is independent of the classifier, so a misclassification can never prevent an emergency stop.</p>
+<h3>8. Future scope</h3><p class="explain">Fit prototypes from field-recorded sensor logs, add an anomaly score for unseen fault types, export a compact model to TensorFlow Lite Micro for microcontroller targets, and publish telemetry over MQTT for fleet dashboards.</p>
+<h3>9. Conclusion</h3><p class="explain">EdgeGuard AI provides a hands-on demonstration of the edge inference workflow: local sensor processing, classification, event logging and local alert behavior. It also benchmarks the model against a rule baseline on a reproducible labelled set and keeps safety logic independent of the model.</p>
+<div class="btns"><button class="btn primary" id="copyReport">Copy report text</button><button class="btn" onclick="window.print()">Print / Save as PDF</button></div></div>
+</section>
+<div class="footer">EdgeGuard AI · Edge inference for industrial motor monitoring</div>
+</div>
+<script>
+const $=id=>document.getElementById(id);
+const sliders={temp:$('temp'),vib:$('vib'),curr:$('curr')};
+const presets={normal:[42,12,18],heat:[96,18,25],vibration:[48,82,25],current:[50,25,92],combined:[112,90,94]};
+let history=[],runs=0,lastEval=null;
+document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t===b));document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===b.dataset.page));if(b.dataset.page==='evaluation'&&lastEval)renderEval(lastEval);}));
+function vals(){return {temp:+sliders.temp.value,vib:+sliders.vib.value/100*1.5,curr:+sliders.curr.value/10};}
+function setPreset(name,run=true){document.querySelectorAll('.scenario').forEach(b=>b.classList.toggle('active',b.dataset.case===name));if(presets[name]){[sliders.temp.value,sliders.vib.value,sliders.curr.value]=presets[name];}update();if(run&&name!=='custom')infer();}
+function update(){let v=vals();$('tempVal').innerHTML=v.temp.toFixed(1)+'<span class="unit"> °C</span>';$('vibVal').innerHTML=v.vib.toFixed(2)+'<span class="unit"> g</span>';$('currVal').innerHTML=v.curr.toFixed(1)+'<span class="unit"> A</span>';$('tempOut').textContent=v.temp+' °C';$('vibOut').textContent=v.vib.toFixed(2)+' g';$('currOut').textContent=v.curr.toFixed(1)+' A';[['tempBar',v.temp/120*100,v.temp>85?'var(--red)':'var(--cyan)'],['vibBar',v.vib/1.5*100,v.vib>.75?'var(--red)':'var(--cyan)'],['currBar',v.curr/10*100,v.curr>7?'var(--red)':'var(--cyan)']].forEach(([id,w,c])=>{$(id).style.width=Math.min(100,w)+'%';$(id).style.background=c;});}
+const prototypes=[
+{name:'Normal operation',key:'Normal',c:[.35,.12,.20],desc:'Sensor pattern resembles normal operation.'},
+{name:'Overheating',key:'Heat',c:[.80,.20,.32],desc:'Temperature pattern resembles a thermal fault.'},
+{name:'Excessive vibration',key:'Vibration',c:[.42,.78,.32],desc:'Vibration pattern resembles mechanical imbalance.'},
+{name:'Electrical overload',key:'Current',c:[.45,.32,.83],desc:'Current pattern resembles electrical overload.'},
+{name:'Combined fault',key:'Combined',c:[.88,.85,.88],desc:'Multiple sensor channels resemble a combined fault.'}];
+function classify(v){let x=[v.temp/120,v.vib/1.5,v.curr/10];let ranked=prototypes.map(p=>({...p,d:Math.sqrt(x.reduce((s,a,i)=>s+(a-p.c[i])**2,0))})).sort((a,b)=>a.d-b.d);let best=ranked[0];let score=Math.max(50,Math.min(99,Math.round(100*(1-best.d/1.25))));return {name:best.name,desc:best.desc,score,d:best.d};}
+function ruleClass(v){if(v.temp>=110)return 'Critical temperature';let flags=[];if(v.temp>=85)flags.push('Overheating');if(v.vib>=.75)flags.push('Excessive vibration');if(v.curr>=7)flags.push('Electrical overload');return flags.length?flags.join(' + '):'Normal operation';}
+function expected(v){if(v.temp>=110)return 'Combined fault';if(v.temp>=85&&v.vib>=.75&&v.curr>=7)return 'Combined fault';if(v.temp>=85)return 'Overheating';if(v.vib>=.75)return 'Excessive vibration';if(v.curr>=7)return 'Electrical overload';return 'Normal operation';}
+function infer(){let start=performance.now(),v=vals(),pred=classify(v),rule=ruleClass(v),critical=v.temp>=110,elapsed=Math.max(.01,performance.now()-start),fault=pred.name!=='Normal operation'||v.temp>75||v.vib>.65||v.curr>6.5||critical;let label=critical?'Critical temperature interlock':pred.name;let status=$('status');status.className='status'+(critical?' danger':fault?' warning':'');$('statusIcon').textContent=critical?'⛔':fault?'⚠':'✓';$('statusTitle').textContent=label;$('statusText').textContent=critical?'Emergency interlock activated at 110 °C.':pred.desc;$('confidenceText').textContent=pred.score+'/100 similarity';$('confidenceBar').style.width=pred.score+'%';$('confidenceBar').style.background=critical?'var(--red)':fault?'var(--amber)':'var(--green)';$('motorState').textContent=fault?'STOPPED':'RUNNING';$('motorState').style.color=fault?'var(--red)':'var(--green)';$('alarmState').textContent=fault?'ACTIVE':'OFF';$('alarmState').style.color=fault?'var(--red)':'var(--green)';$('ruleState').textContent=rule==='Normal operation'?'NORMAL':'FAULT';$('ruleState').style.color=rule==='Normal operation'?'var(--green)':'var(--amber)';$('interlock').textContent=critical?'TRIPPED':'ARMED';$('interlock').style.color=critical?'var(--red)':'var(--green)';$('latency').innerHTML=elapsed.toFixed(3)+'<span class="unit"> ms</span>';history.push(v);if(history.length>30)history.shift();drawChart();runs++;$('runCount').textContent=runs;addLog(label,v,fault);return {v,pred:pred.name,rule,expected:expected(v),elapsed,critical,fault,score:pred.score};}
+function addLog(label,v,fault){let log=$('log');if(runs===1)log.innerHTML='';let row=document.createElement('div');row.className='logrow';let tm=new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit',second:'2-digit'});row.innerHTML='<time>'+tm+'</time><span>'+label+' · '+v.temp+'°C / '+v.vib.toFixed(2)+'g / '+v.curr.toFixed(1)+'A</span><span class="'+(fault?'warn':'ok')+'">'+(fault?'ALERT':'NORMAL')+'</span>';log.prepend(row);$('logCount').textContent=runs+' EVENTS';}
+function drawChart(){let c=$('chart'),ctx=c.getContext('2d'),w=c.width,h=c.height;ctx.clearRect(0,0,w,h);ctx.strokeStyle='#262626';for(let i=0;i<5;i++){let y=10+i*(h-20)/4;ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(w,y);ctx.stroke();}for(let s of [{k:'temp',m:120,c:'#c4766b'},{k:'vib',m:1.5,c:'#d6d6d2'},{k:'curr',m:10,c:'#c2a065'}]){ctx.strokeStyle=s.c;ctx.lineWidth=2;ctx.beginPath();history.forEach((v,i)=>{let x=history.length<2?w:i/(history.length-1)*w,y=h-10-v[s.k]/s.m*(h-20);i?ctx.lineTo(x,y):ctx.moveTo(x,y);});ctx.stroke();}}
+document.querySelectorAll('.scenario').forEach(b=>b.addEventListener('click',()=>setPreset(b.dataset.case)));
+Object.values(sliders).forEach(s=>s.addEventListener('input',()=>{document.querySelectorAll('.scenario').forEach(b=>b.classList.toggle('active',b.dataset.case==='custom'));update();}));
+$('infer').addEventListener('click',infer);
+$('auto').addEventListener('click',()=>{['normal','heat','vibration','current','combined'].forEach(k=>{setPreset(k,false);infer();});});
+$('reset').addEventListener('click',()=>{history=[];runs=0;$('log').innerHTML='<div class="muted">Run inference or execute all test cases to record observations.</div>';$('logCount').textContent='0 EVENTS';$('runCount').textContent='0';setPreset('normal',false);update();infer();});
+function makeDataset(){let rows=[];const classes=[
+['Normal operation',[[38,.12,1.5],[42,.18,1.8],[48,.20,2.1],[52,.15,2.4],[45,.25,1.9]]],
+['Overheating',[[88,.20,2.5],[94,.25,3.0],[102,.18,3.2],[86,.30,2.7],[98,.28,3.1]]],
+['Excessive vibration',[[48,.80,2.5],[52,.92,2.7],[44,1.10,3.0],[58,.85,3.2],[46,.78,2.2]]],
+['Electrical overload',[[48,.25,7.2],[55,.32,8.0],[62,.28,9.0],[50,.40,7.8],[58,.35,8.5]]],
+['Combined fault',[[100,1.0,8.5],[108,1.2,9.2],[96,.95,8.0],[112,1.1,9.5],[104,.85,8.8]]]
+];classes.forEach(([label,arr])=>arr.forEach(a=>rows.push({truth:label,v:{temp:a[0],vib:a[1],curr:a[2]}})));return rows;}
+function matrixHTML(rows,key){let labels=['Normal operation','Overheating','Excessive vibration','Electrical overload','Combined fault'];let out='<table><thead><tr><th>Actual \\ Predicted</th>'+labels.map(l=>'<th>'+l.replace(' operation','')+'</th>').join('')+'</tr></thead><tbody>';labels.forEach(actual=>{out+='<tr><th>'+actual+'</th>';labels.forEach(pred=>{let n=rows.filter(r=>r.truth===actual&&r[key]===pred).length;out+='<td style="color:'+(n?'var(--cyan)':'var(--muted)')+'">'+n+'</td>';});out+='</tr>';});return out+'</tbody></table>';}
+function renderEval(rows){let ml=rows.filter(r=>r.ml===r.truth).length,rb=rows.filter(r=>r.rule===r.truth).length;let acc=(n)=>Math.round(n/rows.length*100)+'%';$('mlAcc').textContent=acc(ml);$('ruleAcc').textContent=acc(rb);$('evalN').textContent=rows.length;$('evalLat').textContent=(rows.reduce((s,r)=>s+r.ms,0)/rows.length).toFixed(3)+' ms';$('matrixML').innerHTML=matrixHTML(rows,'ml');$('matrixRule').innerHTML=matrixHTML(rows,'rule');$('sampleTable').innerHTML='<table><thead><tr><th>#</th><th>Ground truth</th><th>AI prediction</th><th>Threshold baseline</th><th>AI correct?</th></tr></thead><tbody>'+rows.map((r,i)=>'<tr><td>'+(i+1)+'</td><td>'+r.truth+'</td><td>'+r.ml+'</td><td>'+r.rule+'</td><td style="color:'+(r.ml===r.truth?'var(--green)':'var(--red)')+'">'+(r.ml===r.truth?'Yes':'No')+'</td></tr>').join('')+'</tbody></table>';$('reportResults').textContent='On the '+rows.length+'-sample benchmark, the prototype classifier accuracy was '+acc(ml)+' and the threshold baseline accuracy was '+acc(rb)+'. Mean inference latency was '+(rows.reduce((s,r)=>s+r.ms,0)/rows.length).toFixed(3)+' ms. ';}
+$('evaluate').addEventListener('click',()=>{let ds=makeDataset();lastEval=ds.map(row=>{let t=performance.now(),p=classify(row.v),ms=Math.max(.01,performance.now()-t);return {...row,ml:p.name,rule:ruleClass(row.v),ms};});renderEval(lastEval);});
+$('export').addEventListener('click',()=>{if(!lastEval){$('evaluate').click();}let csv='id,temperature_c,vibration_g,current_a,ground_truth,prototype_prediction,threshold_prediction,latency_ms\n'+lastEval.map((r,i)=>[i+1,r.v.temp,r.v.vib,r.v.curr,r.truth,r.ml,r.rule,r.ms.toFixed(4)].map(x=>'"'+String(x).replaceAll('"','""')+'"').join(',')).join('\n');let a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download='edgeguard_evaluation.csv';a.click();URL.revokeObjectURL(a.href);});
+$('copyReport').addEventListener('click',async()=>{let el=$('report');let text=el.innerText;try{await navigator.clipboard.writeText(text);$('copyReport').textContent='Copied report text';}catch(e){let ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();$('copyReport').textContent='Copied report text';}});
+update();drawChart();infer();
+/* ===== Raspberry Pi device console (scripted terminal, drives the real classifier above) ===== */
+const T={body:$('termBody'),busy:false,connected:false,model:false,frame:1040,boot:Date.now()-60000*(137+Math.floor(Math.random()*40))};
+const esc=s=>String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+const sp=(cls,t)=>'<span class="'+cls+'">'+esc(t)+'</span>';
+const ts=()=>new Date().toLocaleTimeString('en-GB');
+const scen={normal:'Normal operation',heat:'Overheating',vibration:'Excessive vibration',current:'Electrical overload',combined:'Combined fault'};
+function scrollT(){T.body.scrollTop=T.body.scrollHeight;}
+function tl(html){const d=document.createElement('div');d.innerHTML=html||'';T.body.appendChild(d);scrollT();return d;}
+function promptHTML(){return T.connected?sp('t-p','pi@edgeguard-pi')+':'+sp('t-h','~/edgeguard')+' $ ':sp('t-p','presenter@lab-pc')+':'+sp('t-h','~')+' $ ';}
+function setConn(on){T.connected=on;$('connBadge').className='conn'+(on?' on':'');$('connBadge').textContent=on?'● CONNECTED':'● OFFLINE';$('termTitle').textContent=on?'pi@edgeguard-pi: ~/edgeguard — ssh':'presenter@lab-pc: ~';$('termPrompt').textContent=on?'pi@edgeguard-pi $':'$';}
+let caretLine=null;
+function showCaret(){if(caretLine)caretLine.remove();caretLine=tl(promptHTML()+'<span class="caret"></span>');}
+function dropCaret(){if(caretLine){caretLine.remove();caretLine=null;}}
+async function typeCmd(cmd,instant){dropCaret();const d=tl(promptHTML());const s=document.createElement('span');d.appendChild(s);if(instant){s.textContent=cmd;return;}for(const ch of cmd){s.textContent+=ch;scrollT();await sleep(12+Math.random()*24);}await sleep(170);}
+async function out(lines,gap=55){for(const l of lines){tl(l);await sleep(gap);}}
+async function progress(label,ms=900){const d=tl('');const n=24;for(let i=0;i<=n;i++){d.innerHTML=esc(label)+' '+sp('t-c','['+'█'.repeat(i)+'░'.repeat(n-i)+']')+' '+String(Math.round(i/n*100)).padStart(3)+'%';scrollT();await sleep(ms/n);}}
+function box(title,rows,cls){const W=56,pad=s=>{s=String(s);return s.length>W-2?s.slice(0,W-2):s.padEnd(W-2);};const L=[sp(cls,'╔'+('═ '+title+' ').padEnd(W,'═')+'╗')];rows.forEach(r=>L.push(sp(cls,'║ ')+(r[1]?sp(r[1],pad(r[0])):esc(pad(r[0])))+sp(cls,' ║')));L.push(sp(cls,'╚'+'═'.repeat(W)+'╝'));return L;}
+function uptime(){const m=Math.floor((Date.now()-T.boot)/60000);return Math.floor(m/60)+'h '+(m%60)+'m';}
+function flag(ok){return ok?sp('t-ok','OK'):sp('t-r','HIGH');}
+
+async function cSSH(){
+ if(T.connected){tl(sp('t-d','already connected to edgeguard-pi.local'));return;}
+ await out([sp('t-d','Resolving edgeguard-pi.local ... 192.168.1.42')],260);
+ await out([sp('t-d','Connecting to 192.168.1.42 port 22.')],420);
+ await out([sp('t-d','Authenticated to edgeguard-pi.local ([192.168.1.42]:22) using "publickey".')],260);
+ await out(['','Linux edgeguard-pi 6.6.51+rpt-rpi-v8 #1 SMP PREEMPT Debian 1:6.6.51-1+rpt3 aarch64','',
+  sp('t-c t-b','  ▌EdgeGuard AI · edge node image v1.2'),
+  sp('t-d','  Raspberry Pi 4 Model B · BCM2711 · 4 GB'),
+  sp('t-d','  sensors: DS18B20 (temp) · ADXL345 (vibration) · ACS712 (current)'),
+  sp('t-d','  inference: on-device · cloud dependency: none'),'',
+  'Last login: '+new Date(Date.now()-3.2*3600e3).toString().slice(0,24)+' from 192.168.1.20'],70);
+ setConn(true);
+}
+async function cNeofetch(){
+ await out([sp('t-p t-b','pi')+'@'+sp('t-p t-b','edgeguard-pi'),'-----------------',
+  sp('t-c','OS')+': Debian GNU/Linux 12 (bookworm) aarch64',
+  sp('t-c','Host')+': Raspberry Pi 4 Model B Rev 1.4',
+  sp('t-c','Kernel')+': 6.6.51+rpt-rpi-v8',
+  sp('t-c','Uptime')+': '+uptime(),
+  sp('t-c','CPU')+': BCM2711 (4) @ 1.500GHz · Cortex-A72',
+  sp('t-c','Memory')+': '+(398+Math.floor(Math.random()*30))+'MiB / 3794MiB',
+  sp('t-c','Python')+': 3.11.2',
+  sp('t-c','Network')+': wlan0 192.168.1.42 · cloud endpoints: none'],60);
+}
+async function cTemp(){const t=(46.8+Math.random()*4).toFixed(1);await out(['temp='+t+"'C",'throttled=0x0'],120);}
+async function cStatus(){
+ const since=new Date(T.boot).toString().slice(0,24);
+ await out([sp('t-ok','●')+' edgeguard.service - EdgeGuard AI local inference service',
+  '     Loaded: loaded (/etc/systemd/system/edgeguard.service; enabled; preset: enabled)',
+  '     Active: '+sp('t-ok t-b','active (running)')+' since '+since+'; '+uptime()+' ago',
+  '   Main PID: 812 (python3)','      Tasks: 3 (limit: 3910)','     Memory: 38.4M','        CPU: '+(2+Math.random()).toFixed(3)+'s',
+  '     CGroup: /system.slice/edgeguard.service','             └─812 /usr/bin/python3 /home/pi/edgeguard/edgeguard.py --daemon','',
+  sp('t-d',ts()+' edgeguard-pi edgeguard[812]: watchdog ok · sensor bus ok · network not required')],50);
+}
+async function cRead(){
+ const v=vals();T.frame++;
+ await out([sp('t-d','['+ts()+'] reading sensor bus (1-Wire, I2C) · frame #'+T.frame)],260);
+ await out(['  '+sp('t-v','DS18B20')+'  w1  28-0316a2794aff   temperature    '+(v.temp.toFixed(1)+' °C').padEnd(9)+' '+flag(v.temp<85),
+  '  '+sp('t-v','ADXL345')+'  i2c-1 @ 0x53        vibration RMS  '+(v.vib.toFixed(2)+' g').padEnd(9)+' '+flag(v.vib<.75),
+  '  '+sp('t-v','ACS712 ')+'  ADS1115 @ 0x48 A0   motor current  '+(v.curr.toFixed(1)+' A').padEnd(9)+' '+flag(v.curr<7)],90);
+}
+async function cInject(k){
+ if(!scen[k]){tl(sp('t-r','error: unknown scenario "'+k+'"'));tl(sp('t-d','valid: '+Object.keys(scen).join(' | ')));return;}
+ setPreset(k,false);const v=vals();
+ await out([sp('t-d','[sim] writing scenario profile "'+k+'" to sensor bus ...')],300);
+ await out(['  → '+v.temp.toFixed(1)+' °C · '+v.vib.toFixed(2)+' g · '+v.curr.toFixed(1)+' A   ('+scen[k]+')',sp('t-ok','  sensor bus updated')],80);
+}
+async function cLoad(){
+ await out([sp('t-d','[edgeguard] loading models/prototype_v1.json')],120);
+ await progress('  loading ',800);
+ await out(['  classes     : 5 (normal, overheating, vibration, overload, combined)',
+  '  features    : 3   x = [temp/120, vib/1.5, curr/10]',
+  '  parameters  : 15  ·  size on disk 0.6 KB',
+  '  runtime     : CPU (numpy) · network not required',
+  '  interlock   : independent cutoff at 110 °C',
+  sp('t-ok','[edgeguard] model ready')],70);
+ T.model=true;
+}
+async function cInfer(){
+ if(!T.model){tl(sp('t-w','[edgeguard] model not in memory, loading first'));await cLoad();}
+ const v=vals(),x=[v.temp/120,v.vib/1.5,v.curr/10];
+ const ds=prototypes.map(p=>({n:p.name,d:Math.sqrt(x.reduce((s,a,i)=>s+(a-p.c[i])**2,0))}));const min=Math.min(...ds.map(d=>d.d));
+ T.frame++;
+ await out([sp('t-d','['+ts()+'] acquiring sensor frame #'+T.frame)],220);
+ await out(['  raw      : temp '+v.temp.toFixed(1)+' °C | vib '+v.vib.toFixed(2)+' g | curr '+v.curr.toFixed(1)+' A',
+  '  vector   : x = ['+x.map(n=>n.toFixed(3)).join(', ')+']','  distance to class prototypes:'],80);
+ for(const d of ds){tl('    '+d.n.padEnd(22)+(d.d===min?sp('t-c t-b',d.d.toFixed(3)+'  ◀ nearest'):sp('t-d',d.d.toFixed(3))));await sleep(70);}
+ const r=infer();
+ await out(['  rule baseline  : '+r.rule,'  inference time : '+r.elapsed.toFixed(3)+' ms  ·  cloud calls: 0'],80);
+ const mlN=r.pred==='Normal operation',ruN=r.rule==='Normal operation';
+ const agree=mlN===ruN?'AGREE ('+(mlN?'both normal':'both fault')+')':'DISAGREE - flag for review';
+ let rows,cls;
+ if(r.critical){cls='t-r';rows=[['STATUS   : CRITICAL - EMERGENCY STOP','t-r t-b'],['CLASS    : '+r.pred],['TRIGGER  : temperature >= 110 °C (interlock)'],['ACTION   : motor OFF, alarm ON, interlock TRIPPED'],['MODEL/RULE: '+agree]];}
+ else if(r.fault&&!mlN){cls='t-w';rows=[['STATUS   : FAULT DETECTED','t-w t-b'],['CLASS    : '+r.pred],['SCORE    : '+r.score+'/100 (prototype match)'],['ACTION   : motor STOPPED, alarm ACTIVE'],['MODEL/RULE: '+agree]];}
+ else if(r.fault){cls='t-w';rows=[['STATUS   : WARNING - readings near limits','t-w t-b'],['CLASS    : '+r.pred],['SCORE    : '+r.score+'/100 (prototype match)'],['ACTION   : motor STOPPED as precaution, alarm ON'],['MODEL/RULE: '+agree]];}
+ else{cls='t-ok';rows=[['STATUS   : HEALTHY','t-ok t-b'],['CLASS    : '+r.pred],['SCORE    : '+r.score+'/100 (prototype match)'],['ACTION   : motor RUNNING, alarm OFF'],['MODEL/RULE: '+agree]];}
+ tl('');await out(box('VERDICT',rows,cls),45);
+ await out([sp('t-d','  GPIO17 relay  → '+(r.fault?'LOW   (motor stopped)':'HIGH  (motor running)')),sp('t-d','  GPIO27 alarm  → '+(r.fault?'HIGH  (buzzer + LED on)':'LOW   (silent)'))],60);
+}
+async function cTestAll(){
+ if(!T.model){tl(sp('t-w','[edgeguard] model not in memory, loading first'));await cLoad();}
+ await out([sp('t-d','[edgeguard] running on-device scenario suite (5 cases)'),'',sp('t-d','  #  SCENARIO    READINGS               PREDICTION            RESULT')],80);
+ let pass=0,lat=0,trips=0,alarms=0,normalRun=false;const keys=Object.keys(scen);
+ for(let i=0;i<keys.length;i++){const k=keys[i];setPreset(k,false);await sleep(280);const r=infer();const ok=r.pred===scen[k];pass+=ok;lat+=r.elapsed;trips+=r.critical;if(k==='normal')normalRun=!r.fault;else alarms+=r.fault;
+  const rd=(r.v.temp+'°C '+r.v.vib.toFixed(2)+'g '+r.v.curr.toFixed(1)+'A').padEnd(22);
+  tl('  '+(i+1)+'  '+k.padEnd(11)+' '+rd+' '+r.pred.padEnd(21)+' '+(ok?sp('t-ok','PASS'):sp('t-r','FAIL'))+sp('t-d',r.critical?'  interlock':r.fault?'  alarm':'  running'));}
+ const all=pass===keys.length;tl('');
+ await out(box('SUITE VERDICT',[[(all?'PASS':'PARTIAL')+'  '+pass+'/'+keys.length+' scenarios classified correctly',all?'t-ok t-b':'t-w t-b'],['Faults detected : '+alarms+'/'+(keys.length-1)+' fault cases raised alarm'],['Normal case     : '+(normalRun?'motor kept running':'false alarm raised')],['Interlock trips : '+trips+(trips?' (temperature >= 110 °C)':'')],['Mean latency    : '+(lat/keys.length).toFixed(3)+' ms · cloud calls 0']],all?'t-ok':'t-w'),45);
+}
+async function cEval(){
+ if(!T.model){tl(sp('t-w','[edgeguard] model not in memory, loading first'));await cLoad();}
+ await out([sp('t-d','[evaluate] dataset: data/benchmark_25.csv · 25 samples · 5 classes')],120);
+ await progress('  classifying ',1100);
+ $('evaluate').click();const rows=lastEval,labels=Object.values(scen);
+ await out(['',sp('t-d','  CLASS                 N   PROTOTYPE   THRESHOLD')],60);
+ for(const l of labels){const sub=rows.filter(r=>r.truth===l);const a=sub.filter(r=>r.ml===l).length,b=sub.filter(r=>r.rule===l).length;tl('  '+l.padEnd(21)+' '+String(sub.length).padEnd(3)+' '+(a+'/'+sub.length).padEnd(11)+' '+(b+'/'+sub.length));await sleep(80);}
+ const ml=rows.filter(r=>r.ml===r.truth).length,rb=rows.filter(r=>r.rule===r.truth).length,n=rows.length,pa=Math.round(ml/n*100),pb=Math.round(rb/n*100),lat=rows.reduce((s,r)=>s+r.ms,0)/n;
+ await out(['  '+'-'.repeat(48),'  '+'ACCURACY'.padEnd(25)+' '+(pa+'%').padEnd(11)+' '+pb+'%','  mean latency '+lat.toFixed(3)+' ms/sample',''],70);
+ const diff=pa-pb,line=diff>0?'Prototype model beats rules by '+diff+' pts':diff<0?'Rules beat prototype model by '+(-diff)+' pts':'Prototype model matches rule baseline';
+ await out(box('MODEL VERDICT',[[pa>=80?'ACCEPTED for demo deployment':'NEEDS IMPROVEMENT',pa>=80?'t-ok t-b':'t-w t-b'],['Prototype accuracy : '+pa+'%  ('+ml+'/'+n+')'],['Threshold baseline : '+pb+'%  ('+rb+'/'+n+')'],[line],['Benchmark: data/benchmark_25.csv']],pa>=80?'t-ok':'t-w'),45);
+ tl(sp('t-d','[evaluate] results written to Evaluation tab and report section 5'));
+}
+async function cHelp(){await out([sp('t-b','EdgeGuard device console · commands'),
+ '  ssh pi@edgeguard-pi.local            connect to the edge node',
+ '  neofetch --off                       board and OS summary',
+ '  vcgencmd measure_temp                SoC temperature',
+ '  systemctl status edgeguard           service health',
+ '  python3 sensors.py --read            read the three sensors',
+ '  python3 sensors.py --inject <name>   normal|heat|vibration|current|combined',
+ '  python3 edgeguard.py --load-model    load classifier',
+ '  python3 edgeguard.py --infer         classify + verdict',
+ '  python3 edgeguard.py --test-all      5-scenario suite',
+ '  python3 evaluate.py                  25-sample evaluation',
+ '  ls · pwd · whoami · uptime · clear · exit'],25);}
+
+async function exec(raw,typed){
+ const c=raw.trim().replace(/\s+/g,' ');if(!c)return;
+ if(c==='clear'){T.body.innerHTML='';caretLine=null;return;}
+ const local=/^(ssh|help|exit|clear)\b/.test(c);
+ if(!local&&!T.connected){await typeCmd('ssh pi@edgeguard-pi.local');await cSSH();await sleep(350);}
+ await typeCmd(c,typed);
+ let m;
+ if(/^ssh\b/.test(c))await cSSH();
+ else if(/^neofetch\b/.test(c))await cNeofetch();
+ else if(/^vcgencmd\b/.test(c))await cTemp();
+ else if(/^systemctl status\b/.test(c))await cStatus();
+ else if(c==='python3 sensors.py --read')await cRead();
+ else if(m=c.match(/^python3 sensors\.py --inject (\S+)$/))await cInject(m[1]);
+ else if(c==='python3 edgeguard.py --load-model')await cLoad();
+ else if(c==='python3 edgeguard.py --infer')await cInfer();
+ else if(c==='python3 edgeguard.py --test-all')await cTestAll();
+ else if(c==='python3 evaluate.py')await cEval();
+ else if(c==='help')await cHelp();
+ else if(c==='ls')tl(sp('t-h','data')+'  '+sp('t-h','logs')+'  '+sp('t-h','models')+'  edgeguard.py  evaluate.py  requirements.txt  sensors.py');
+ else if(c==='pwd')tl('/home/pi/edgeguard');
+ else if(c==='whoami')tl('pi');
+ else if(c==='hostname')tl('edgeguard-pi');
+ else if(c==='uptime')tl(' '+new Date().toTimeString().slice(0,8)+' up '+uptime()+',  1 user,  load average: 0.08, 0.05, 0.01');
+ else if(c==='exit'){if(T.connected){await out(['logout',sp('t-d','Connection to edgeguard-pi.local closed.')],150);setConn(false);}else tl(sp('t-d','no open session'));}
+ else tl('-bash: '+esc(c.split(' ')[0])+': command not found');
+}
+async function demo(){
+ const steps=['ssh pi@edgeguard-pi.local','neofetch --off','systemctl status edgeguard','python3 edgeguard.py --load-model','python3 sensors.py --inject normal','python3 edgeguard.py --infer','python3 sensors.py --inject heat','python3 edgeguard.py --infer','python3 edgeguard.py --test-all','python3 evaluate.py'];
+ for(const s of steps){if(s.startsWith('ssh')&&T.connected)continue;await exec(s);await sleep(700);}
+}
+function setBtns(dis){document.querySelectorAll('[data-run]').forEach(b=>b.disabled=dis);$('termInput').disabled=dis;}
+async function run(c,typed){if(T.busy)return;T.busy=true;setBtns(true);try{c==='demo'?await demo():await exec(c,typed);}catch(e){tl(sp('t-r','error: '+e.message));}T.busy=false;setBtns(false);showCaret();if(typed)$('termInput').focus();}
+document.querySelectorAll('[data-run]').forEach(b=>b.addEventListener('click',()=>run(b.dataset.run)));
+$('termInput').addEventListener('keydown',e=>{if(e.key==='Enter'){const v=e.target.value;e.target.value='';run(v,true);}});
+T.body.addEventListener('click',()=>{if(!T.busy&&!getSelection().toString())$('termInput').focus();});
+tl(sp('t-d','EdgeGuard AI · device console'));tl(sp('t-d','Click Run full demo, or any command on the right. Type help for the list.'));tl('');showCaret();
+</script></body></html>

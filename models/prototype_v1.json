@@ -1,0 +1,73 @@
+{
+  "model": "nearest_prototype",
+  "version": "1.0",
+  "features": [
+    "temperature_c",
+    "vibration_g",
+    "current_a"
+  ],
+  "normalization": {
+    "temperature_c": 120,
+    "vibration_g": 1.5,
+    "current_a": 10
+  },
+  "metric": "euclidean",
+  "classes": [
+    {
+      "label": "Normal operation",
+      "prototype": [
+        0.35,
+        0.12,
+        0.2
+      ]
+    },
+    {
+      "label": "Overheating",
+      "prototype": [
+        0.8,
+        0.2,
+        0.32
+      ]
+    },
+    {
+      "label": "Excessive vibration",
+      "prototype": [
+        0.42,
+        0.78,
+        0.32
+      ]
+    },
+    {
+      "label": "Electrical overload",
+      "prototype": [
+        0.45,
+        0.32,
+        0.83
+      ]
+    },
+    {
+      "label": "Combined fault",
+      "prototype": [
+        0.88,
+        0.85,
+        0.88
+      ]
+    }
+  ],
+  "score": {
+    "formula": "clip(100*(1-d_min/1.25),50,99)"
+  },
+  "interlock": {
+    "channel": "temperature_c",
+    "trip_at": 110
+  },
+  "rule_baseline": {
+    "temperature_c": 85,
+    "vibration_g": 0.75,
+    "current_a": 7.0
+  },
+  "gpio": {
+    "motor_relay": 17,
+    "alarm": 27
+  }
+}
